@@ -20,6 +20,7 @@ services:
       DNSMASQ_LISTENING: 'all'
       VIRTUAL_HOST: 'pi.hole'
       FTLCONF_LOCAL_IPV4: '127.0.0.1'
+      FTL_CMD: 'no-daemon -- --dns-forward-max 300'
     # deploy:
     #   resources:
     #     limits:
