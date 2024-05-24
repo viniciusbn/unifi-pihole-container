@@ -1,0 +1,3 @@
+.env
+**/pihole-conf/
+**/unifi-conf/
