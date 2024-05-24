@@ -12,12 +12,12 @@ services:
     environment:
       TZ: 'America/Sao_Paulo'
       WEBPASSWORD: ${WEBPASSWORD}
-      PIHOLE_DNS_: '1.1.1.1;8.8.8.8'
+      PIHOLE_DNS_: ${PIHOLE_DNS_}
       DHCP_ACTIVE: 'false'
       IPv6: 'false'
       DNSMASQ_LISTENING: 'all'
-      VIRTUAL_HOST: 'pi.hole'
-      FTLCONF_LOCAL_IPV4: '127.0.0.1'
+      VIRTUAL_HOST: ${VIRTUAL_HOST}
+      FTLCONF_LOCAL_IPV4: ${FTLCONF_LOCAL_IPV4}
       FTL_CMD: 'no-daemon -- --dns-forward-max 300'
     # deploy:
     #   resources:
