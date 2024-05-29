@@ -17,8 +17,8 @@ cd unifi-pihole-container/unificontroller
 
 You need to create a .env file in the root directory of the repository. This file will contain environment variables used by the Docker Compose setup. Below is a template for the .env file:
 ```
-MONGO_USER=your_mongo_username
-MONGO_PASS=your_mongo_password
+MONGO_USER=your_unifi_mongo_username    #Ex: unifi
+MONGO_PASS=your_unifi_mongo_password    #Ex: unifi
 MONGO_HOST=unifi-db
 MONGO_DBNAME=unifi
 ```
