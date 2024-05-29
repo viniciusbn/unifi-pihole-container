@@ -1,6 +1,6 @@
-# Pihole application
+# Pi-hole application
 
-This repository contains a Docker Compose setup for running the Pihole application.
+This repository contains a Docker Compose setup for running the Pi-hole application.
 
 ## Prerequisites
 - Docker
@@ -28,13 +28,17 @@ Replace variables values as you needed.
 ```
 docker-compose up -d
 ```
-This command will start the Pihole container in detached mode.
+This command will start the Pi-hole container in detached mode.
 
-4. Access the Pihole Application
+4. Access the Pi-hole Application
 
-Once the containers are up and running, you can access the Pihole Application web interface by navigating to https://localhost/admin/login.php in your web browser.
+Once the containers are up and running, you can access the Pi-hole Application web interface by navigating to https://localhost/admin/login.php in your web browser.
 
-5. Stopping the services
+5. Update your internal DHCP service
+
+You need to update your internal DHCP service to use the physical IP address as a DNS service.
+
+6. Stopping the services
 
 To stop and remove the containers, use the following command:
 ```
