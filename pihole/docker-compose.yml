@@ -5,20 +5,32 @@ services:
     image: pihole/pihole:latest
     # For DHCP it is recommended to remove these ports and instead add: network_mode: "host"
     ports:
+      # DNS Ports
       - "53:53/tcp"
       - "53:53/udp"
-    #  - "67:67/udp" # Only required if you are using Pi-hole as your DHCP server
+      # Default HTTP Port
       - "80:80/tcp"
+      # Default HTTPs Port. FTL will generate a self-signed certificate
+      - "443:443/tcp"
+      # Uncomment the line below if you are using Pi-hole as your DHCP server
+      #- "67:67/udp"
+      # Uncomment the line below if you are using Pi-hole as your NTP server
+      - "123:123/udp"
     environment:
       TZ: 'America/Sao_Paulo'
-      WEBPASSWORD: ${WEBPASSWORD}
-      PIHOLE_DNS_: ${PIHOLE_DNS_}
-      DHCP_ACTIVE: 'false'
-      IPv6: 'false'
-      DNSMASQ_LISTENING: 'all'
-      VIRTUAL_HOST: ${VIRTUAL_HOST}
-      FTLCONF_LOCAL_IPV4: ${FTLCONF_LOCAL_IPV4}
+      FTLCONF_webserver_api_password: ${WEBPASSWORD}
+      FTLCONF_dns_upstreams: ${PIHOLE_DNS_}
+      FTLCONF_dhcp_active: 'false'
+      FTLCONF_dns_listeningMode: 'all'
       FTL_CMD: 'no-daemon -- --dns-forward-max 300'
+    cap_add:
+      # See https://github.com/pi-hole/docker-pi-hole#note-on-capabilities
+      # Required if you are using Pi-hole as your DHCP server, else not needed
+      # - NET_ADMIN
+      # Required if you are using Pi-hole as your NTP client to be able to set the host's system time
+      - SYS_TIME
+      # Optional, if Pi-hole should get some more processing time
+      - SYS_NICE      
     # deploy:
     #   resources:
     #     limits:
